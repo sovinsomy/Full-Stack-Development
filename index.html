@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Worker Demo</title>
+</head>
+<body>
+  <h2>Web Worker Example</h2>
+  <input type="number" id="numberInput" placeholder="Enter a number">
+  <button onclick="calculateSquare()">Calculate Square</button>
+  <p id="result"></p>
+
+  <script>
+    const worker = new Worker("worker.js");
+
+    function calculateSquare() {
+      const number = document.getElementById("numberInput").value;
+      worker.postMessage(Number(number)); // Send data to worker
+    }
+
+    worker.onmessage = function(event) {
+      document.getElementById("result").innerText = "Result: " + event.data;
+      console.log("Result from worker:", event.data);
+    };
+  </script>
+</body>
+</html>
