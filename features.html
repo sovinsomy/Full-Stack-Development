@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Features</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Leaflet CSS for OpenStreetMap -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #location {
+      position: absolute;
+      top: 150px;
+      left: 20px;
+      background-color: white;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
+      font-size: 1rem;
+    }
+
+    #map {
+      width: 100%;
+      height: 500px;
+      margin-top: 2rem;
+      border-radius: 10px;
+    }
+
+    main {
+      position: relative;
+      padding: 1rem;
+    }
+
+    .geo-heading {
+      margin-left: 20px;
+      margin-top: 1rem;
+      font-size: 1.5rem;
+      color: #0a0a23;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo-left">
+        <img src="E:/MCA/sem-1/full stack/logo.jpeg" alt="Logo" class="logo" />
+      </div>
+      <div class="title-center">
+        <h1>Cyber Security: Malware Analysis</h1>
+      </div>
+      <nav class="nav-right">
+        <ul>
+          <li><a href="overview.html">Overview</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="geo-heading">Geolocation</h2>
+    <div id="location">Fetching location...</div>
+    <div id="map"></div>
+  </main>
+
+  <footer>
+    <p>sovin | Date: 27-06-2025 &copy; All rights reserved.</p>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Location and Map Script -->
+  <script>
+    const locationDiv = document.getElementById("location");
+
+    function showPosition(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      locationDiv.textContent = `Latitude: ${lat.toFixed(4)}, Longitude: ${lon.toFixed(4)}`;
+
+      const map = L.map('map').setView([lat, lon], 13);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      L.marker([lat, lon])
+        .addTo(map)
+        .bindPopup('You are here.')
+        .openPopup();
+    }
+
+    function showError(error) {
+      locationDiv.textContent = "Unable to retrieve location.";
+    }
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+      locationDiv.textContent = "Geolocation not supported.";
+    }
+  </script>
+</body>
+</html>

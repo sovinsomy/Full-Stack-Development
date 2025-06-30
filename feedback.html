@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo-left">
+        <img src="E:/MCA/sem-1/full stack/logo.jpeg" alt="Logo" class="logo" />
+      </div>
+      <div class="title-center">
+        <h1>Cyber Security: Malware Analysis</h1>
+      </div>
+      <nav class="nav-right">
+        <ul>
+          <li><a href="overview.html">Overview</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="flex-container">
+      <article>
+        <h2>Leave Feedback</h2>
+        <form id="feedbackForm">
+          <input type="text" id="name" placeholder="Your Name" required />
+          <textarea id="comment" placeholder="Your Comment" required></textarea>
+          <button type="submit">Submit</button>
+        </form>
+      </article>
+      <article>
+        <h3>previous Feedback:</h3>
+        <ul id="feedbackList"></ul>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>sovin | Date: 27-06-2025 &copy; All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
